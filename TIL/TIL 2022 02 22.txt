@@ -1,0 +1,83 @@
+반복문 for
+선언문 조건문 증감문으로 구성됨.
+ex.) for(선언문; 조건문; 증감문){
+  ~~~~~~~~
+}
+보통 선언문에는 변수에 대한 초기화 ex.) let i = 0
+조건문에는 앞에서 선언한 변수의 조건을 판단 ex.) i < 5
+참이면 ~~~에 있는 코드에 실행되고 증감문으로 간다
+증감문에 가서는 변수의 업데이트 ex.) i++
+i를 판단해서 1보다 5보다 작으니까 5보다 작을때까지 반복
+조건문이 false가 되면 그 전까지 결과까지만 출력
+for문의 위에 선언문을 빼서 변수 초기화하고 증감문의 결과값을 아래 ~~~에 가능
+for문은 이중 삼중으로 안에 써 넣어서도 가능
+
+for in문 (이름 붙이기)
+const person = { fname: "will", lname: "aran", age: 28 };
+
+let text = "";
+for (let x in person) {
+  text += person[x];
+}
+console.log(text);
+
+for of문 (글자를 쪼개서 하나씩 넣어줌)
+let language = "Javascript";
+let text = "";
+
+for (let x of language) {
+  text += x;
+  console.log(x);
+}
+
+반복문 while
+for문과 달리 조건문만 사용해서 선언문 증감문 없이함
+조건문이 참이면 계속 반복 f면 끝.
+do while은 조건을 모두 일단 쓰고 조건에 대한 판단을 마지막에 하고 t면 위로 가서 다시함.
+~~~~에 보통 조건을 추가해 종료할 수 있게 만듬.
+
+반복문 제어
+break 코드 블록을 탈출 할 때 식별자 한번만 종료함 Label을 사용하면 전부다 종료
+continue 반복문 수행시 코드 블록 실행을 해당 라인에서 정지하고 조건문으로 보낼 때
+보통 continue뒤 코드를 스킵시키고 싶을 때 사용
+label은 별도로 내가 이름붙이는 식별자임 어디서부터 멈출 것인가! 보통 잘 안씀.
+
+함수
+함수는 다수의 명령문을 코드 블록으로 감싸고 하나의 실행 단위로 만든 코드
+유사한 동작을 하는 코드를 하나로 묶음. 정의부분과 호출 부분으로 구성.
+
+function add (x,y) {
+  return x + y;
+}
+add(10,20);
+
+add 함수 이름(필수) xy 매개변수 리턴뒤에 결과값 < 함수 정의
+add(10,20) < 함수 호출 이름이 필수인 이유 밑에서 호출 할 때 이름으로해서
+매개변수없이 arguements를 사용해서 쓰기도 함.
+
+함수 선언식 (함수를 정석으로 쓰는것)
+function add(x,y){
+  return x + y;
+}
+
+함수 표현식 (함수를 변수에 넣어주는것임)
+const add = function(x,y) {
+  return x +y;
+};
+
+화살표 함수 (결과값을 알려줌)
+const add = (x,y) => x+y;
+
+함수 호출 function add (x, y = 10) 여기 y가 값이 없으면 10을 기본값으로
+
+재귀함수
+함수 스스로 자신을 참조해 호출하면서 동일한 코드가 지속적으로 수행되는 것.
+특정 조건이 됐을 때 자신을 그만하도록 탈출코드가 필요함
+recursive 사용
+
+콜백 함수 callback_func 얘가 고차함수로 감
+고차 함수 higher_order_func
+
+call by value, reference
+value 원시타입으로 넘겨서 주소만 가기때문에 안변함
+reference 객채타입을 매개 변수로 넘겨서 변함

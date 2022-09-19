@@ -1,0 +1,38 @@
+배열
+여러 개채 값을 순차적으로 나열한 자료 구조 알고리즘 내 사용빈도 多
+배열 내 값을 요소 요소는 index로 접근
+대표 속성property와 메서드method
+배열 추가삭제 array.push 뒤넣기 pop 뒤빼기 shift 앞빼기 unshift 앞빼기
+splice 배열 지정 삭제 원본에 영향 ( 이 번호 뒤의 인덱스부터 출력 , 콤마 뒤에 있으면 앞에 인덱스부터 몇개까지, 2번째 콤마뒤에는 잘린데 뒤로 추가할것.)
+slice 배열 지정 삭제 원본에 영향 X ( 이 번호 뒤의 인덱스부터 출력, 콤마 뒤에 있으면 앞에 인덱스부터 몇깨까지)
+concat 배열에 배열 추가 원본에 영향 X
+
+배열 반복문
+let fruit = ["Apple", "Orange", "Melon"]
+
+배열을 반복함
+for (let i = 0; i < fruit.length; i++) {
+  console.log(fruit[i]);
+}
+
+배열 for of 는 fruit를 fru에 넣는다.
+for (let fru of fruit){
+  console.log(fru);
+}
+
+배열 for in은 fruit를 키값을 지정해 넣는다.
+for (let key in fruit) {
+  console.log(fruit[key]);
+}
+
+배열 탐색
+
+indexof 앞에서 lastindexof 뒤에서부터 Array.index or indexof(item, from)
+값 포함여부 확인 : Array.includes(item, from)
+
+배열 정렬 : 번호 알파벳 순서대로
+Array.sort()
+배열 반전 : 그냥 배열을 거꾸로
+Array.reverse()
+배열 변환 : 
+Array.join(separator(구분자 , ; . / 같은거))

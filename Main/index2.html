@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>반응형 이미지</title>
+    <style>
+      h2 { color: darkorange; }
+    </style>
+  </head>
+  <body>
+    <h2>반응형 이미지</h2>
+
+    <img
+      src="png/large.png"
+      srcset="png/small.png 300w,
+              png/medium.png 450w,
+              png/large.png 600w"
+      sizes="(min-width: 600px) 600px,
+             (min-width: 450px) 450px,
+             300px"
+      alt="responsive images"
+    />
+
+    <video autoplay muted>
+      <source src="video/file_example_MP4_480_1_5MG.mp4">
+      Sorry, your browser doesn't support embedded videos.
+    </video>
+    <video controls poster="iamges/Xhow.jpg">
+      <source src="video/sample-mp4-file.mp4">
+    </video>
+    <iframe id="map"
+    title="Map"
+    width="300"
+    height="200"
+    src=https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik>
+  </iframe>
+  <hr>
+  <form action="" method="get">
+    <div>
+      <label>Date :
+        <input type="date" name="date">
+      </label>
+      <label>Time :
+        <input type="time" name="time">
+      </label>
+    </div>
+    <!-- <canvas id = "canvas" width="300" height="300"> </canvas>
+
+    <script type="importmap">
+      {
+        "imports" : {
+          "three": "https://unpkg.com/three@0.151.0/build/three.module.js",
+          "GLTFLoader" : "https://unpkg.com/three@0.141.0/examples/jsm/loaders/GLTFLoader.js"
+        }
+      }
+    </script>
+
+    <script>
+      import
+
+    </script> -->
+    
+    <fieldset>
+      <legend>음식 선택</legend>
+        <div>
+          <label for="foodname">음식 이름 :</label>
+          <input type="text" name="food" id="foodname" value="사과" readonly>
+          <label for="foodcolor">음식 색깔 :</label>
+          <input type="text" name="fc" id="foodcolor" placeholder="빨강" disabled>
+        </div>
+        <div>
+        <label for="foodnumber">음식 갯수 :</label>
+        <input type="number" name="음식 갯수" id="foodnumber" placeholder="3" step="2" min="1" max="15">
+        <label for="foodhuger">음식 포만도 :</label>
+        <input type="range" name="음식 포만도" id="foodhuger">
+        </div>
+        <button type="submit">제출</button>
+      </fieldset>
+      
+      <fieldset disabled>
+        <legend>의복 선택</legend>
+        <div>
+          <label for="foodname">의복 이름 :</label>
+          <input type="text" name="food" id="foodname">
+        </div>
+        <div>
+          <label for="foodcolor">의복 색깔 :</label>
+          <input type="text" name="fc" id="foodcolor">
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <!-- <legend>로그인</legend>
+        <label>ID : 
+          <input type="text" name="id" minlength="2" maxlength="5" autocomplete="on" required>
+        </label>
+        <label>Password :
+          <input  type="password" name="pwd" minlength="2" maxlength="5" autocomplete="off" required>
+        </label> -->
+        <div>
+          <label>Email :
+            <input type="email" name="email">
+          </label>
+          <label>Tel :
+            <input type="tel" name="tel">
+          </label>
+        </div>
+      </fieldset>
+        <div>
+          <label>Checkbox :
+            <input type="checkbox" name="check1" checked>
+            <input type="checkbox" name="check2">
+            <input type="checkbox" name="check3">
+          </label>
+          <label>Radio :
+            <input type="radio" name="radiobuttons" value="r1">
+            <input type="radio" name="radiobuttons" value="r1" checked>
+            <input type="radio" name="radiobuttons" value="r3">
+          </label>
+        </div>
+
+        <label for="movie">좋아하는 영화 : </label>
+          <select id="movie" name="movie" required>
+            <option value="">--Please choose an option--</option>
+           <optgroup label="Animation">
+            <option value="toystory">토이스토리</option>
+            <option value="dwar" selected>디워</option>
+            <option value="zootopia">주토피아</option>
+           </optgroup>
+           <optgroup label="Sf">
+            <option value="matrix">매트릭스</option>
+            <option value="alien covernant">에이리언 커버넌트</option>
+           </optgroup>
+          </select>
+        <label for="drama">좋아하는 드라마 : </label>
+          <input type="text" id="drama" name="drama" list="drama-list">
+          
+          <datalist id="drama-list">
+            <option>아이리스</option>
+            <option>아이리스2</option>
+            <option>왕건</option>
+            <option>도깨비</option>
+            <option>오징어게임</option>
+          </datalist>
+
+          <label for="comment">댓글 :</label>
+          <textarea name="comment" id="comment" rows="5"></textarea>
+        <!-- <input type="submit" value="제출하기!">
+        <input type="reset" name="reset">
+        <input type="button" value="빈 버튼"> -->
+      <button type="submit"><strong>제출하기</strong></button>
+      <br>
+      <button type="reset">reset</button>
+      <button type="button">빈 버튼</button>
+  </form>
+  </body>
+</html>

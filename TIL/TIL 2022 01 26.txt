@@ -1,0 +1,56 @@
+구조를 나타내는 요소
+
+div : 블록 작동 구획 분할 (아무런 의미가 없음)
+span : 인라인 작동 구획 분할 (아무런 의미가 없음)
+위 2개는 스타일링을 위해 나눔
+
+semnatic web : 의미를 가지고 있는 요소로 짜여진 웹 ex,) <head>, <body>, <p>등등
+
+non semantic web : 의미를 가지고 있지 않는 그냥 나누는 웹
+
+Semantic web이 정보를 더 잘 습득할 수 있음.
+
+header : 포털의 맨 위, 기사의 맨 위
+footer : 저작권 메뉴 등 포털의 맨 아래
+nav : 네비게이션 > 문서의 현제 페이지, 상위 페이지를 보여주는것
+ex.) 네이버 > 네이버 스포츠 > 해외야구
+aside : 사이드 바, 메뉴 옆에 광고 등
+main : body 하위 자식 태그 메인은 딱 하나만.
+article : 하나의 웹에 여러가지 사용 가능 독립적 구분 배포 재 사용 가능한 것. article 태그 하나가 내용이 되면 됨.
+section : 하나의 웹에 여러개 사용 가능 독립적 X
+ex.) article = 사과를 고르는법
+section = 사과를 고르는 법 소개
+사과를 고르는 법 소개만 가지고는 사과를 고르는법인지 모르기때문에 혼자 못씀.
+목록과 표
+<목록>
+ol : ordered list = 순서를 붙이는 리스트
+ul : unordered list = 순서가 없이 나열만 하는 리스트
+li : list item = 리스트 개별을 쓸 때 사용
+
+ol,ul 속성
+start = 나열된 것 중 start부터 시작
+type = 앞의 숫자의 타입
+reversed = 순서 역전
+li 속성
+value = 내 숫자가 몇인지부터 시작해서 뒤에 숫자 따라옴.
+
+dl : definition list
+밑의 둘을 포함 (무언가를 정의할 것이다)
+dt : term : 용어
+dd : description : 용어를 정의하거나 설명
+
+<표>
+table : 복잡한 데이터를 표시 할 때만 쓰 셈 레이아웃은 css
+tr : table row 표의 행에 표시되는 것 (가로)
+th : table head 굵은 글씨 하나의 행이나 열을 대표
+scope 속성 : th가 행을 대표하는지 열을 대표하는지 표시해줄 때 씀.
+col : 행 세로 대표 row 열 가로 대표
+td : table data 그냥 글씨 그냥 데이터
+colspan : 셀 합병
+thead : 표 헤더 영역
+tfoot : 표 푸터 영역
+tboby : 표 본문 영역
+caption : 표의 전체 설명 맨 위에있음
+아래에 보내고싶으면 css
+caption vs figurecaption
+테이블을 쓰기만 가능 피규어는 사진 비디오 텍스트 pre로 형식화된 텍스트도 가능

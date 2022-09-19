@@ -1,0 +1,59 @@
+폼 요소
+
+사용자가 정보를 입력할 수 있는 장치
+ex.) 회원 가입 페이지 but, 필요한 정보를 채워라 등의 안내 문구를 확인 할 수 있는 정도까지는 자바가 아닌 html의 영역으로 가능함.
+
+action : 폼 데이터를 보낼 주소
+method : 주소로 필요 메서드를 보내주세요.
+post 메서드 = 주소에 구구 절절 다 쓰지 않음.
+ex). 비밀번호 같은 것.
+get 메서드 = 주소에 구구 절절 다 쓰는 것임.
+ex.) 검색어 같은 것.
+
+input : 사용자가 정보를 입력할 수 있는 영역
+
+input의 type
+text type 속성 2개 minlenth, maxlength
+(최소글자 최대글자)zh
+textarea : input은 빈요소 얘는 자식요소가능
+text는 한줄 얘는 여러줄 가능 pre랑 같이 띄어쓰기 모두 적용 행열 늘리기가능
+password 속성도 text랑 같음
+email 속성은 쓰게되면 웹에서 알아서 이메일 형태로 쓰라고 함
+tel 속성은 전화번호인데 얘는 뭐 수정 값이 없지만 나중에 모바일 같은데는 번호먼저 뜸
+number : 숫자를 쓸 수 있음 옆에 위아래 스크롤.
+range : 범위를 지정할 수 있음
+month 달까지 week 주까지 date 일까지
+time 시간만 지정
+submit : 제출 버튼없이도 알아서 만들어줌
+value : 이름 바꾸기
+button : 버튼 만들기 : 자바로 기능 넣음 그냥은 기능 없음.
+(submit 타입 : 버튼이 서버로 양식 데이터 제출
+reset 타입 : 모든 컨트롤 초기화
+button 타입 : 기본행동 X 클리이언트 스크립트 연결)
+checkbox : 체크하는거 input에 checked 쓰면 체크 먼저 되있음.
+radio 버튼은 name이 같으면 이름이 같은 버튼중에 단 하나만 선택됨. value로 이름지정해줘서 구분해야되고 checked사용가능
+placeholder : 미리 입력해둔 힌트 단어
+autocomplete : 자동완성기능
+required : 무조건 입력하지 않고 넘기면 제출이 안되게 제출해야되는 입력값으로 만듬
+(value가 있는 것 중에 선택하라가 될 수도 있고 내가 써야 하는 경우가 있을 수 도 있다.)
+disable : 비활성화
+reaeonly : 오로지 읽기만 value로 값을 지정하고 보여주기만 할 때
+min max : 숫자제한
+step : 간격설정 2라 하면 숫자가 2만큼 뜀
+list : 리스트 나열
+datalist : 가능한 선택지를 추천하게 나열
+
+label : 어떤 정보를 입력할 지 설명하는 영역
+for 속성 : input의 구분 점, input의 아이디를 찾아 그 input에 해당하는 것만 설명하는 레이블이 되는것.
+
+select : input처럼 하나의 필드 선택하는것
+option : select의 선택 사항 value를 지정하면
+value를 서버로 보냄
+datalist : select는 무조건 선택이지만 얘는
+추천만 해줌 입력 너가해도 됨
+
+label의 자식 요소로 input이 들어가면 굳이 for와 id가 필요없음.
+
+fieldset : form 안에 input label이 여러 개 있을 수 있는데, 이걸 나누는 틀 단순히 외형을 위해서면 div로 되지만, 의미적요소가 있기 때문에 이걸로 나눔
+legend : 범례 ( fieldset을 묶는 제목같은것)
+disabled 쓰면 그 밑에 자식요소들 모두 사용 불가능
