@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta property="og:title" content="MyOwn LOL Encyclopedia"/>
+    <meta property="og:description" content="mini project for Web Development"/>
+    <meta property="og:image" content="{{ url_for('static', filename='Back.jpg') }}"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='icon.ico') }}" type="image/x-icon">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -28,9 +33,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
 
     <style>
-        .posting-box > .custom-file {
+        .top-lol {
+            width: 100%;
+            height: 350px;
+
+
+            background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://kr-publish.s3.amazonaws.com/notice/0268f49d4d229bcee46589954838b252d9aa3f89.jpg');
+            background-position: center 30%;
+            background-position-y: 20%;
+            background-size: cover;
+
+            color: black;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .top-lol > h1 {
+            text-align: center;
+            padding: 100px 0;
+            font-size: 5.6875em;
+            font: bold;
+            -webkit-text-stroke: 3px white;
+        }
+
+        .content-wrap {
+            width: 500px;
+            margin: auto;
+        }
+
+        .desc-wrap {
+            width: 500px;
+            margin: 50px auto;
+
+        }
+
+        .content-box > .form-group {
             margin-bottom: 20px;
         }
+
+        .desc-wrap > .desc-box {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            width: 100px;
+            height: 50px;
+        }
+
+        .align-btn {
+            display: inline-block;
+            float: right;
+        }
+
+        .custom-file {
+            margin: 30px 0 20px 0;
+        }
+
     </style>
     <script>
         $(document).ready(function () {
@@ -42,12 +102,14 @@
             console.log("hello")
         }
 
+        {# 파일 선택하면 이름이 뜨게 해주려고 #}
+
         function posting() {
             let title = $('#title').val()
             let name = $('#name').val()
             let position = $('#position').val()
             let star = $('#star').val()
-            let content = $('#content').val()
+            let desc = $('#desc').val()
 
             let file = $('#file')[0].files[0]
             let form_data = new FormData()
@@ -57,7 +119,7 @@
             form_data.append("name_give", name)
             form_data.append("position_give", position)
             form_data.append("star_give", star)
-            form_data.append("content_give", content)
+            form_data.append("desc_give", desc)
 
             $.ajax({
                 type: "POST",
@@ -75,55 +137,73 @@
     </script>
 </head>
 <body>
+<div class="top-lol"onclick="window.location.href = '/'">
+    <h1>나만의 챔피언 꿀팁</h1>
+</div>
 
-<div class="wrap">
-    <div class="banner" onclick="window.location.href = '/'">
-        <div style="display: inline-block; margin: 10px 5px; float: right">
-            <button type="button" class="btn btn-primary">로그아웃</button>
+<div class="content-wrap">
+    <div class="content-box">
+
+        <!--이미지 등록-->
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="file">
+            <label class="custom-file-label" for="file">이미지를 선택해주세요</label>
         </div>
-        <h1>챔피언 상세</h1>
+
+
+        <!--팁 제목-->
+        <div class="form-group">
+            <input type="email" class="form-control" id="title" placeholder="제목을 입력해주세요">
+        </div>
+
+        <!--챔프 이름-->
+        <div class="form-group">
+            <input type="email" class="form-control" id="name" placeholder="챔피언 이름을 입력해주세요">
+        </div>
+
+        <!--주요 포지션-->
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">주요 포지션</label>
+            <select class="form-select" id="position">
+                <option selected>-- 선택하기 --</option>
+                <option value="탑">탑</option>
+                <option value="정글">정글</option>
+                <option value="미드">미드</option>
+                <option value="바텀">바텀</option>
+                <option value="서포터">서포터</option>
+            </select>
+        </div>
+
+        <!--챔피언 평점-->
+        <div class="input-group mb-3">
+            <label class="input-group-text" for="inputGroupSelect01">챔피언 평점</label>
+            <select class="form-select" id="star">
+                <option selected>-- 선택하기 --</option>
+                <option value="1">⭐</option>
+                <option value="2">⭐⭐</option>
+                <option value="3">⭐⭐⭐</option>
+                <option value="4">⭐⭐⭐⭐</option>
+                <option value="5">⭐⭐⭐⭐⭐</option>
+            </select>
+        </div>
+
     </div>
-    <div class="wrap2">
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1>등록</h1>
-                <div class="posting-box">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="file">
-                        <label class="custom-file-label" for="file">사진 선택하기</label>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="title" placeholder="제목">
-                    </div>
-                    <div class="form-group">
-                        <input type="email" class="form-control" id="name" placeholder="챔피언 이름">
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control form-control-lg" id="position">
-                            <option>포지션</option>
-                            <option>탑</option>
-                            <option>정글</option>
-                            <option>미드</option>
-                            <option>원딜</option>
-                            <option>서폿</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <select class="form-control form-control-lg" id="star">
-                            <option>별점</option>
-                            <option>*</option>
-                            <option>**</option>
-                            <option>***</option>
-                            <option>****</option>
-                            <option>*****</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" id="content" rows="3" placeholder="내용 입력"></textarea>
-                    </div>
-                    <button onclick="posting()" type="button" class="btn btn-primary">저장하기</button>
-                </div>
-            </div>
-        </div>
+
+</div>
+
+<div class="desc-wrap">
+    <div class="form-floating desc-box">
+        <textarea id="desc" class="form-control" placeholder="Leave a comment here" style="height: 200px"></textarea>
+        <label for="floatingTextarea2">나만의 꿀팁</label>
+    </div>
+
+    <div class="desc-box align-btn">
+        <button type="button" class="btn btn-primary" onclick="posting()">등록</button>
+    </div>
+
+</div>
+
+
 </body>
+</html>
 </html>

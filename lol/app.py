@@ -13,20 +13,22 @@ db = client.lol
 @app.route('/')
 def main():
     # DB에서 저장된 단어 찾아서 HTML에 나타내기
-    names = list(db.lol.find({}, {"_id": False}))
-    return render_template("index.html", names=names)
+    words = list(db.lol.find({}, {"_id": False}))
+    return render_template("index.html", words=words)
+
 
 @app.route('/lol', methods=['GET'])
 def show_diary():
     lols = list(db.lol.find({}, {'_id': False}))
     return jsonify({'all_lol': lols})
 
+
 @app.route('/lol', methods=['POST'])
 def save_diary():
     title_receive = request.form['title_give']
     name_receive = request.form['name_give']
     position_receive = request.form['position_give']
-    content_receive = request.form['content_give']
+    desc_receive = request.form['desc_give']
     star_receive = request.form['star_give']
 
     file = request.files["file_give"]
@@ -45,14 +47,15 @@ def save_diary():
         'title': title_receive,
         'name': name_receive,
         'position': position_receive,
-        'content': content_receive,
+        'desc': desc_receive,
         'star': star_receive,
         'file': f'{filename}.{extension}'
     }
-    
+
     db.lol.insert_one(doc)
 
     return jsonify({'msg': '저장 완료!'})
+
 
 @app.route('/detail')
 def detail():

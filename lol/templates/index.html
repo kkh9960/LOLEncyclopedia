@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta property="og:title" content="MyOwn LOL Encyclopedia"/>
+    <meta property="og:description" content="mini project for Web Development"/>
+    <meta property="og:image" content="{{ url_for('static', filename='Back.jpg') }}"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='icon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='icon.ico') }}" type="image/x-icon">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -46,17 +51,17 @@
             font-size: 14px;
         }
 
-        .btn-sparta {
-            color: #fff;
-            background-color: #e8344e;
-            border-color: #e8344e;
+        .heart {
+            color: pink;
+            background-color: cornflowerblue;
+            border-color: cornflowerblue;
         }
 
-        .btn-outline-sparta {
-            color: #e8344e;
-            background-color: transparent;
+        .view {
+            color: black;
+            background-color: cornflowerblue;
             background-image: none;
-            border-color: #e8344e;
+            border-color: cornflowerblue;
         }
 
         .button {
@@ -68,10 +73,15 @@
             margin: 50px auto;
             max-width: 700px;
         }
+
+        .container.highlight {
+            border: solid 5px gray;
+            background-color: aliceblue;
+        }
     </style>
     <script>
         $(document).ready(function () {
-            listing()
+            {#listing()#}
         })
 
         function listing() {
@@ -81,15 +91,17 @@
                 data: {},
                 success: function (response) {
                     let lols = response['all_lol']
-                    for (let i=0; i<lols.length; i++) {
+                    for (let i = 0; i < lols.length; i++) {
                         let title = lols[i]['title']
                         let name = lols[i]['name']
                         let position = lols[i]['position']
                         let star = lols[i]['star']
-                        let content = lols[i]['content']
+                        let desc = lols[i]['desc']
                         let file = lols[i]['file']
 
-                        let temp_html = `<div class="container">
+                        let star_image = '⭐'.repeat(star)
+
+                        let temp_html = `<div class="container" id = "word">
                                             <div class="d-flex flex-row justify-content-between">
                                                 <div class="d-flex flex-row justify-content-start">
                                                    <img src="../static/${file}" style="display: inline" width="100">
@@ -111,8 +123,8 @@
                                             <div id="definitions">
                                                 <div style="padding:10px">
                                                     <i>${position}</i>
-                                                    <br><i>${content}</i><br>
-                                                    <span class="example">${star}</span>
+                                                    <br><i>${desc}</i><br>
+                                                    <span class="example">${star_image}</span>
                                                 </div>
                                             </div>
                                         </div>`
@@ -121,23 +133,40 @@
                 }
             })
         }
-        let names = {{ names|tojson }};
-        let name_list = [];
-        for (let i = 0; i<names.length; i++) {
-            name_list.push(names[i]["name"])
+        {# jinia2 사용하면서 비활성 참고용으로 놔둠#}
+
+        let words = {{ words|tojson }};
+        let word_list = [];
+        for (let i = 0; i < words.length; i++) {
+            word_list.push(words[i]["name"])
         }
-        console.log(name_list)
+        console.log(word_list)
+        {#월드 리스트 만들기 콘솔로 보면 들어와있음#}
 
         function find_word() {
             let word = $("#input-word").val()
-            if (name_list.includes(word)) {
+            if (word_list.includes(word)) {
                 // 리스트에 있으면 하이라이트
+                $(`#word-${word}`).addClass("highlight")
+                $(`#word-${word}`).siblings().removeClass("highlight")
+                $(`#word-${word}`)[0].scrollIntoView()
             } else {
                 alert("꿀팁이 없습니다!")
                 window.location.reload()
                 //그냥 없다고만 표시하면 됨
             }
         }
+
+        let star_list = [];
+        for (let i=0; i<words.length; i++) {
+            star_list.push(words[i]["star"])
+        }
+        console.log(star_list)
+        console.log('⭐'.repeat(5))
+
+        {#별 그림 넣기 함수 만드는 중#}
+        {#밑에 if 구문 말고 위에서 함수로 돌려서 넣을 수 없을까?#}
+
     </script>
 </head>
 <body>
@@ -158,7 +187,48 @@
         <input id="input-word" class="form-control" style="margin-right: 0.5rem">
         <button class="btn btn-light" onclick="find_word()"><i class="fa fa-search"></i></button>
     </div>
-    <div id = "card-box">
+    <div id="card-box">
+        {% for word in words %}
+            <div class="container" id="word-{{ word.name }}">
+                <div class="d-flex flex-row justify-content-between">
+                    <div class="d-flex flex-row justify-content-start">
+                        <img src="../static/{{ word.file }}" style="display: inline" width="100">
+                        <div>
+                            <h1 id="title" style="margin-left: 10px">{{ word.title }}</h1>
+                            <h5 id="name" style="display: inline; margin-left: 15px"> {{ word.name }}</h5>
+                        </div>
+                    </div>
+                    <div class="button">
+                        <button id="btn-save" onclick="window.location.href = '/detail'" style="display: inline;" class="btn view btn-lg">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </button>
+                        <button id="btn-delete" class="btn heart btn-lg">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+                <hr>
+                <div id="definitions">
+                    <div style="padding:10px">
+                        <i>{{ word.position }}</i>
+                        <br><i>{{ word.desc }}</i><br>
+                        <span class="example">
+                            {% if word.star|int <= 1 %}
+                            ⭐
+                            {% elif word.star|int <= 2 %}
+                            ⭐⭐
+                            {% elif word.star|int <= 3 %}
+                            ⭐⭐⭐
+                            {% elif word.star|int <= 4 %}
+                            ⭐⭐⭐⭐
+                            {% else %}
+                            ⭐⭐⭐⭐⭐
+                            {% endif %}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 </div>
 </body>
