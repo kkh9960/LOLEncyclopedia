@@ -189,6 +189,9 @@
     </div>
     <div id="card-box">
         {% for word in words %}
+        {% set stars = word.star|int %}
+        {% set star_image = '⭐' %}
+        {% set allstar = star_image * stars %}
             <div class="container" id="word-{{ word.name }}">
                 <div class="d-flex flex-row justify-content-between">
                     <div class="d-flex flex-row justify-content-start">
@@ -213,17 +216,7 @@
                         <i>{{ word.position }}</i>
                         <br><i>{{ word.desc }}</i><br>
                         <span class="example">
-                            {% if word.star|int <= 1 %}
-                            ⭐
-                            {% elif word.star|int <= 2 %}
-                            ⭐⭐
-                            {% elif word.star|int <= 3 %}
-                            ⭐⭐⭐
-                            {% elif word.star|int <= 4 %}
-                            ⭐⭐⭐⭐
-                            {% else %}
-                            ⭐⭐⭐⭐⭐
-                            {% endif %}
+                            {{ allstar }}
                         </span>
                     </div>
                 </div>
