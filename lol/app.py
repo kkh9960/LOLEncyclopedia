@@ -1,75 +1,43 @@
-from flask import Flask, render_template, request, jsonify, redirect, url_for
-from pymongo import MongoClient
+from flask import Flask, render_template, request, jsonify
 import requests
+from pymongo import MongoClient
 
-from datetime import datetime
+import certifi
 
+ca = certifi.where()
+client = MongoClient('mongodb+srv://test:sparta@cluster0.qvjmyb9.mongodb.net/?retryWrites=true&w=majority' , tlsCAFile=ca)
+db = client.week1_team
 app = Flask(__name__)
-
-client = MongoClient('43.200.181.231', 27017, username="test", password="test")
-db = client.lol
 
 
 @app.route('/')
-def main():
-    # DB에서 저장된 단어 찾아서 HTML에 나타내기
-    names = list(db.lol.find({}, {"_id": False}))
-    return render_template("index.html", names=names)
+def plus():
+    return render_template('index.html')
 
-@app.route('/lol', methods=['GET'])
-def show_diary():
-    lols = list(db.lol.find({}, {'_id': False}))
-    return jsonify({'all_lol': lols})
 
-@app.route('/lol', methods=['POST'])
-def save_diary():
-    title_receive = request.form['title_give']
-    name_receive = request.form['name_give']
-    position_receive = request.form['position_give']
-    content_receive = request.form['content_give']
-    star_receive = request.form['star_give']
+@app.route('/home')
+def home():
+    return render_template('home.html')
 
-    file = request.files["file_give"]
 
-    extension = file.filename.split('.')[-1]
-
-    today = datetime.now()
-    mytime = today.strftime('%Y-%m-%d-%H-%M-%S')
-
-    filename = f'file-{mytime}'
-
-    save_to = f'static/{filename}.{extension}'
-    file.save(save_to)
+@app.route("/lolplus", methods=["POST"])
+def chat_post():
+    chat_receive = request.form['comment_give']
 
     doc = {
-        'title': title_receive,
-        'name': name_receive,
-        'position': position_receive,
-        'content': content_receive,
-        'star': star_receive,
-        'file': f'{filename}.{extension}'
+        'chat':chat_receive
     }
-    
-    db.lol.insert_one(doc)
 
-    return jsonify({'msg': '저장 완료!'})
+    db.lolplus.insert_one(doc)
 
-@app.route('/detail')
-def detail():
-    # API에서 단어 뜻 찾아서 결과 보내기
-    return render_template("detail.html")
+    return jsonify({'msg': 'post(기록) 연결'})
 
 
-@app.route('/api/save_word', methods=['POST'])
-def save_word():
-    # 단어 저장하기
-    return jsonify({'result': 'success', 'msg': '단어 저장'})
+@app.route("/lolplus", methods=["GET"])
+def chat_get():
+    lolplus_list = list(db.lolplus.find({}, {'_id': False}))
 
-
-@app.route('/api/delete_word', methods=['POST'])
-def delete_word():
-    # 단어 삭제하기
-    return jsonify({'result': 'success', 'msg': '단어 삭제'})
+    return jsonify({'chat_db': lolplus_list})
 
 
 if __name__ == '__main__':
