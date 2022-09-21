@@ -1,0 +1,32 @@
+* {
+    font-family: 'Jua', sans-serif;
+}
+
+.wrap {
+    background-color: RGBA(255, 255, 255, 0.2);
+    min-height: 100vh;
+    padding-bottom: 50px;
+}
+
+.banner {
+    width: 100%;
+    height: 400px;
+
+    background-color: white;
+    background-image: url('Back.jpg');
+
+    background-position: center;
+    background-position-y: 20%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: black;
+    cursor: pointer;
+}
+
+.banner > h1 {
+    text-align: center;
+    padding: 100px 0;
+    font-size: 5.6875em;
+    font: bold;
+    -webkit-text-stroke: 3px white;
+}

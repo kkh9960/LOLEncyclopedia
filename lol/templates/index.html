@@ -1,11 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>나만의 롤 백과 사전</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link href='{{ url_for("static", filename="mystyle.css") }}' rel="stylesheet">
+    {#공통된 스타일 시트 적용#}
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    {#아이콘 적용#}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+
+    <title>나만의 롤 백과사전</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    {#폰트 가져오기#}
+
+    <style>
+        .container {
+            width: 80%;
+            max-width: 1000px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: white;
+
+            border: solid 1px gray;
+            border-radius: 10px;
+        }
+
+        span.example {
+            color: gray;
+            font-size: 14px;
+        }
+
+        .btn-sparta {
+            color: #fff;
+            background-color: #e8344e;
+            border-color: #e8344e;
+        }
+
+        .btn-outline-sparta {
+            color: #e8344e;
+            background-color: transparent;
+            background-image: none;
+            border-color: #e8344e;
+        }
+
+        .button {
+            float: right;
+        }
+
+        .search-box {
+            width: 70%;
+            margin: 50px auto;
+            max-width: 700px;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            listing()
+        })
+
+        function listing() {
+            $.ajax({
+                type: "GET",
+                url: "/lol",
+                data: {},
+                success: function (response) {
+                    let lols = response['all_lol']
+                    for (let i=0; i<lols.length; i++) {
+                        let title = lols[i]['title']
+                        let name = lols[i]['name']
+                        let position = lols[i]['position']
+                        let star = lols[i]['star']
+                        let content = lols[i]['content']
+                        let file = lols[i]['file']
+
+                        let temp_html = `<div class="container">
+                                            <div class="d-flex flex-row justify-content-between">
+                                                <div class="d-flex flex-row justify-content-start">
+                                                   <img src="../static/${file}" style="display: inline" width="100">
+                                                    <div>
+                                                        <h1 id="title" style="margin-left: 10px">${title}</h1>
+                                                        <h5 id="name" style="display: inline; margin-left: 15px"> ${name}</h5>
+                                                    </div>
+                                                </div>
+                                                <div class="button">
+                                                    <button id="btn-save" style="display: inline;" class="btn btn-outline-sparta btn-lg">
+                                                        <i class="fa fa-eye" aria-hidden="true"></i>
+                                                    </button>
+                                                    <button id="btn-delete" class="btn btn-sparta btn-lg">
+                                                        <i class="fa fa-heart" aria-hidden="true"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <div id="definitions">
+                                                <div style="padding:10px">
+                                                    <i>${position}</i>
+                                                    <br><i>${content}</i><br>
+                                                    <span class="example">${star}</span>
+                                                </div>
+                                            </div>
+                                        </div>`
+                        $('#card-box').append(temp_html)
+                    }
+                }
+            })
+        }
+        let names = {{ names|tojson }};
+        let name_list = [];
+        for (let i = 0; i<names.length; i++) {
+            name_list.push(names[i]["name"])
+        }
+        console.log(name_list)
+
+        function find_word() {
+            let word = $("#input-word").val()
+            if (name_list.includes(word)) {
+                // 리스트에 있으면 하이라이트
+            } else {
+                alert("꿀팁이 없습니다!")
+                window.location.reload()
+                //그냥 없다고만 표시하면 됨
+            }
+        }
+    </script>
 </head>
 <body>
-    <h1>나만의 롤 백과 사전</h1>
-    <a href = "/detail">글쓰기</a>
+
+<div class="wrap">
+    <div class="banner" onclick="window.location.href = '/'">
+        <div style="display: inline-block; margin: 10px 5px; float: right">
+            {#오른쪽으로 묶어서 보내기#}
+            <button type="button" class="btn btn-primary"
+                    onclick="window.location.href = '/detail'; event.stopPropagation();">글쓰기
+            </button>
+            {#bubbling issue#}
+            <button type="button" class="btn btn-primary">로그아웃</button>
+        </div>
+        <h1>나만의 롤 백과사전</h1>
+    </div>
+    <div class="search-box d-flex justify-content-center">
+        <input id="input-word" class="form-control" style="margin-right: 0.5rem">
+        <button class="btn btn-light" onclick="find_word()"><i class="fa fa-search"></i></button>
+    </div>
+    <div id = "card-box">
+    </div>
+</div>
 </body>
 </html>

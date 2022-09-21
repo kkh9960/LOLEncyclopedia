@@ -2,44 +2,128 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link href='{{ url_for("static", filename="mystyle.css") }}' rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
+
     <title>챔피언 상세</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+    <style>
+        .posting-box > .custom-file {
+            margin-bottom: 20px;
+        }
+    </style>
     <script>
         $(document).ready(function () {
-            //get_list()
+            bsCustomFileInput.init()
+            listing()
         })
 
-        function get_list() {
+        function listing() {
+            console.log("hello")
+        }
+
+        function posting() {
+            let title = $('#title').val()
+            let name = $('#name').val()
+            let position = $('#position').val()
+            let star = $('#star').val()
+            let content = $('#content').val()
+
+            let file = $('#file')[0].files[0]
+            let form_data = new FormData()
+
+            form_data.append("file_give", file)
+            form_data.append("title_give", title)
+            form_data.append("name_give", name)
+            form_data.append("position_give", position)
+            form_data.append("star_give", star)
+            form_data.append("content_give", content)
+
             $.ajax({
-                type: "GET",
-                url: "http://openapi.seoul.go.kr:8088/6d4d776b466c656533356a4b4b5872/json/RealtimeCityAir/1/99",
-                data: {},
+                type: "POST",
+                url: "/lol",
+                data: form_data,
+                cache: false,
+                contentType: false,
+                processData: false,
                 success: function (response) {
-                    let rows = response["RealtimeCityAir"]["row"];
-                    console.log(rows)
-                    $("#gu-list").empty()
-                    for (i=0;i<rows.length;i++) {
-                        let gu_name = rows[i]["MSRSTE_NM"]
-                        let gu_mise = rows[i]["IDEX_MVL"]
-                        console.log(gu_name, gu_mise)
-                        let html_temp = `<li>${gu_name}:${gu_mise}</li>`
-                        $("#gu-list").append(html_temp)
-                    }
+                    alert(response["msg"])
+                    window.location.href = "/"
                 }
-            })
+            });
         }
     </script>
 </head>
 <body>
+
 <div class="wrap">
-    <div clss="banner" onclick="window.location.href ='/'">
+    <div class="banner" onclick="window.location.href = '/'">
+        <div style="display: inline-block; margin: 10px 5px; float: right">
+            <button type="button" class="btn btn-primary">로그아웃</button>
+        </div>
         <h1>챔피언 상세</h1>
-        <ul id = "gu-list">
-            {% set gu_name = rows[0]["MSRSTE_NM"] %}
-            {% set gu_mise = rows[0]["IDEX_MVL"] %}
-            <li>{{ gu_name }} : {{ gu_mise|int }}</li>
-        </ul>
     </div>
-</div>
+    <div class="wrap2">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1>등록</h1>
+                <div class="posting-box">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="file">
+                        <label class="custom-file-label" for="file">사진 선택하기</label>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="title" placeholder="제목">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" id="name" placeholder="챔피언 이름">
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control form-control-lg" id="position">
+                            <option>포지션</option>
+                            <option>탑</option>
+                            <option>정글</option>
+                            <option>미드</option>
+                            <option>원딜</option>
+                            <option>서폿</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-control form-control-lg" id="star">
+                            <option>별점</option>
+                            <option>*</option>
+                            <option>**</option>
+                            <option>***</option>
+                            <option>****</option>
+                            <option>*****</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" id="content" rows="3" placeholder="내용 입력"></textarea>
+                    </div>
+                    <button onclick="posting()" type="button" class="btn btn-primary">저장하기</button>
+                </div>
+            </div>
+        </div>
 </body>
 </html>
