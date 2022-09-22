@@ -14,29 +14,36 @@ https://123.123/
 ## 2. 기획
 #### 와이어 프레임
 ### - 로그인/회원가입 페이지
+
 ![1](https://user-images.githubusercontent.com/80233565/191632295-f0d15f5e-c0c3-40bb-a194-faae93f78ebf.JPG)
 ![2](https://user-images.githubusercontent.com/80233565/191632310-2162b9db-0741-455f-b8bb-c480cc68ff44.JPG)
+
 ☑ 로그인 유지 기능(JWT 사용), 로그인 버튼 클릭시 메인페이지 이동/회원가입 클릭시 회원가입 페이지 이동
 
+
 ### - 꿀팁 목록 페이지(메인 페이지)
+
 ![3](https://user-images.githubusercontent.com/80233565/191632812-3809d511-3063-44ef-88ed-76bc50fbdbbb.JPG)
+
 ☑ 더보기 버튼 누르면 상세페이지로 이동/좋아요 버튼 누르면 카운팅/챔피언 이름으로 검색 가능
 
+
 ### - 꿀팁 상세 페이지
+
 ![4](https://user-images.githubusercontent.com/80233565/191633277-e836dfd0-695c-4012-9f06-9538391e8287.JPG)
+
 ☑ 선택한 목록의 상세정보를 볼 수 있고 댓글 기능이 있어 꿀팁 공유 가능
 
+
 ### - 꿀팁 작성 페이지
+
 ![5](https://user-images.githubusercontent.com/80233565/191633863-ac0a3e24-fbc1-49e9-a173-d3f75572b785.JPG)
+
 ☑ 작성한 꿀팁 DB에 저장 -> 꿀팁 목록 페이지로 전달
 
 ### 🔗 와이어 프레임[카카오 오븐] -> (https://ovenapp.io/project/hd0s9L82jriZbPwhLrmdrLHXP19yYv94#xkOfC)
 
-## 3. DB
-### - movies
-![image](https://user-images.githubusercontent.com/5901912/189132236-dd3ae8bf-fc6f-4613-a319-3dc7d6993e78.png)
-### - comments
-![image](https://user-images.githubusercontent.com/5901912/189132460-979dbc78-c2cb-4cf7-ac4c-19d330a0a598.png)
+
 
 
 
