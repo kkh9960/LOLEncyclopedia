@@ -108,7 +108,7 @@ def update_like():
         doc = {
             "post_id": post_id_receive,
             "username": user_info["username"],
-            "type": type_receive
+            "type": driver.current_url
         }
         if action_receive == "like":
             db.likes.insert_one(doc)
@@ -175,20 +175,23 @@ def show(num):
 @app.route("/lolplus", methods=["POST"])
 def chat_post():
     chat_receive = request.form['comment_give']
+    name_receive = request.form['name_give']
 
     doc = {
-        'chat': chat_receive
+        'chat': chat_receive,
+        'name': name_receive,
     }
 
     db.lolplus.insert_one(doc)
 
-    return jsonify({'msg': '댓글 작성 완료!'})
+    return jsonify({'msg': '댓글등록완료'})
 
-@app.route("/lolplus", methods=["GET"])
-def chat_get():
-    lolplus_list = list(db.lolplus.find({}, {'_id': False}))
 
-    return jsonify({'chat_db': lolplus_list})
+@app.route("/show/<int:num>", methods=["GET"])
+def chat_get(num):
+    chatsnus = db.lolplus.find_one({'ch_num': num})
+
+    return render_template('/show/<int:num>', chatnu=chatsnus)
 
 
 # @app.route('/api/save_word', methods=['POST'])

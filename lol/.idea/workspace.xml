@@ -138,6 +138,7 @@
       <workItem from="1663808186614" duration="2676000" />
       <workItem from="1663811275960" duration="10605000" />
       <workItem from="1663828715941" duration="752000" />
+      <workItem from="1663829896399" duration="5802000" />
     </task>
     <servers />
   </component>
@@ -157,6 +158,6 @@
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/lol$test.coverage" NAME="test 커버리지 결과" MODIFIED="1663727173838" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/lol$app.coverage" NAME="app 커버리지 결과" MODIFIED="1663828729797" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/lol$app.coverage" NAME="app 커버리지 결과" MODIFIED="1663835619763" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
