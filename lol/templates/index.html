@@ -56,6 +56,9 @@
             background-color: #0069d9;
             border-color: #0069d9;
         }
+        .heart:active{
+            color: pink;
+        }
 
         .view {
             color: black;
@@ -143,6 +146,7 @@
         console.log(word_list)
         {#월드 리스트 만들기 콘솔로 보면 들어와있음#}
 
+
         function find_word() {
             let word = $("#input-word").val()
             if (word_list.includes(word)) {
@@ -172,14 +176,14 @@
 <body>
 
 <div class="wrap">
-    <div class="banner" onclick="window.location.href = '/'">
+    <div class="banner" onclick="window.location.href = '/index'">
         <div style="display: inline-block; margin: 10px 5px; float: right">
             {#오른쪽으로 묶어서 보내기#}
             <button type="button" class="btn btn-primary"
                     onclick="window.location.href = '/detail'; event.stopPropagation();">글쓰기
             </button>
             {#bubbling issue#}
-            <button type="button" class="btn btn-primary">로그아웃</button>
+            <button type="button" class="btn btn-primary" onclick="window.location.href = '/'; event.stopPropagation();">로그아웃</button>
         </div>
         <h1>나만의 롤 백과사전</h1>
     </div>
@@ -202,7 +206,7 @@
                         </div>
                     </div>
                     <div class="button">
-                        <button id="btn-save" onclick="window.location.href = '/detail'" style="display: inline;" class="btn view btn-lg">
+                        <button id="btn-save" style="display: inline;" class="btn view btn-lg" onclick="window.location.href = '/show/{{ word.num }}'">
                             <i class="fa fa-eye" aria-hidden="true"></i>
                         </button>
                         <button id="btn-delete" class="btn heart btn-lg">
