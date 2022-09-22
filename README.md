@@ -36,6 +36,6 @@ http://52.78.245.130/
 |   로그인    |   POST    |      /sign_in      | {'username':username_receive, 'password':pw_hash}                                                              | 로그인 완료    | 
 |  회원 가입   |  POST  |   /sign_up/save    | {'username':username_receive, 'password':password_hash}                                                        | 가입 완료     |
 | 팁 목록 조회  |  GET   |         /          |                                                                                                                | 팁리스트      |
-|   팁 작성   |  POST  |        /lol        | {'num': count, 'file' : f'{filename}.{extension}', 'title' : title_receive, 'name' : name_receive,<br> 'postion':postion_receive, 'star':star_receive, 'desc':desc_receive} | 작성 팁 데이터  |
+|   팁 작성   |  POST  |        /lol        | {'num': count, 'file' : f'{filename}.{extension}', 'title' : title_receive, 'name' : name_receive, 'postion':postion_receive, 'star':star_receive, 'desc':desc_receive} | 작성 팁 데이터  |
 |  댓글 작성   |  POST  |      /lolplus      | {'chat': chat_receive, 'name': name_receive}                                                                   | 작성 댓글 데이터 |
 
