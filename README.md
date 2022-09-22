@@ -18,15 +18,15 @@ https://123.123/
 ![1](https://user-images.githubusercontent.com/80233565/191632295-f0d15f5e-c0c3-40bb-a194-faae93f78ebf.JPG)
 ![2](https://user-images.githubusercontent.com/80233565/191632310-2162b9db-0741-455f-b8bb-c480cc68ff44.JPG)
 
-### - 꿀팁 목록 페이지(메인 페이지)
+### > 꿀팁 목록 페이지(메인 페이지)
 ☑ 더보기 버튼 누르면 상세페이지로 이동/좋아요 버튼 누르면 카운팅/챔피언 이름으로 검색 가능
 ![3](https://user-images.githubusercontent.com/80233565/191632812-3809d511-3063-44ef-88ed-76bc50fbdbbb.JPG)
 
-### - 꿀팁 상세 페이지
+### > 꿀팁 상세 페이지
 ☑ 선택한 목록의 상세정보를 볼 수 있고 댓글 기능이 있어 꿀팁 공유 가능
 ![4](https://user-images.githubusercontent.com/80233565/191633277-e836dfd0-695c-4012-9f06-9538391e8287.JPG)
 
-### - 꿀팁 작성 페이지
+### > 꿀팁 작성 페이지
 ☑ 작성한 꿀팁 DB에 저장 -> 꿀팁 목록 페이지로 전달
 ![5](https://user-images.githubusercontent.com/80233565/191633863-ac0a3e24-fbc1-49e9-a173-d3f75572b785.JPG)
 
