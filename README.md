@@ -1,7 +1,7 @@
-# 항해99 9기 B반 6조 MiniProject - LOLEncyclopedia
+# 6조 MiniProject - LOLEncyclopedia
 > 리그 오브 레전드 (League of Legends) 챔피언들의 개인적인 평가와 신규 트리, 소소한 팁 등을 공유하는 정보 플랫폼 입니다.
 
-https://123.123/
+http://52.78.245.130/
 
 ## 1. 팀원소개 및 담당 페이지
 | 이름 | 담당 | 깃허브ID |
@@ -32,14 +32,17 @@ https://123.123/
 
 
 ## 3. API
-| 기능 | Method | URL | request | response |
-|:---:|:---:|:---:|---|---|
-| 로그인 |  | | | | 
-| 회원 가입 |  | | | |
-| 팁 목록 조회 | GET |  | | |
-| 팁 작성 | POST |  | {'num': count, 'file' : file, 'title' : title, 'name' : name,<br> 'postion':postion, 'star':star, 'desc':desc} | |
-| 댓글 작성 | | | | |
-| 팁 검색 | | | | |
+|    기능    | Method |   URL    | request                                                                                                        | response  |
+|:--------:|:------:|:--------:|----------------------------------------------------------------------------------------------------------------|-----------|
+|   로그인    |   POST    |    /sign_in      |    {'username':username, 'password':password}                                                                       | 로그인 완료  | 
+|  회원 가입   |  POST  |    /sign_up/save      | {'username':username, 'password':password}                                                                     | 가입 완료     |
+| 팁 목록 조회  |  GET   |   /lol   |                                                                                                                | 팁리스트      |
+|   팁 작성   |  POST  |   /lol   | {'num': count, 'file' : file, 'title' : title, 'name' : name,<br> 'postion':postion, 'star':star, 'desc':desc} | 작성 팁 데이터  |
+|  댓글 작성   |  POST  | /lolplus | {'chat': chat}                                                                                                 | 작성 댓글 데이터 |
+|   팁 검색   |        |          |                                                                                                                | 검색 결과 리스트 |
+| 팁 목록 좋아요 |        |          |                                                                                                                |  |
+
+
 
 
 
