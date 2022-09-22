@@ -71,7 +71,7 @@ def save_post():
         'position': position_receive,
         'star': star_receive,
         'desc': desc_receive,
-        'num': count
+
     }
 
     db.loldb.insert_one(doc)
@@ -89,26 +89,32 @@ def home():
     return render_template('write.html')
 
 
+@app.route("/show/<int:num>", methods=["GET"])
+def chat_get(num):
+    chatsnus = db.lolplus.find_one({'ch_num': num})
+
+    return render_template('/show/<int:num>', chatnu=chatsnus)
+
+
+
 @app.route("/lolplus", methods=["POST"])
 def chat_post():
     chat_receive = request.form['comment_give']
     name_receive = request.form['name_give']
 
+    chat_num = list(db.lolplus.find({}, {'_id': False}))
+    chats = len(chat_num) + 1
+
     doc = {
         'chat': chat_receive,
-        'name' : name_receive
+        'name': name_receive,
+        'ch_num': chats
     }
 
     db.lolplus.insert_one(doc)
 
-    return jsonify({'msg': 'post(기록) 연결'})
+    return jsonify({'msg': '댓글등록완료'})
 
-
-@app.route("/lolplus", methods=["GET"])
-def chat_get():
-    lolplus_list = list(db.lolplus.find({}, {'_id': False}))
-
-    return jsonify({'chat_db': lolplus_list})
 
 
 if __name__ == '__main__':

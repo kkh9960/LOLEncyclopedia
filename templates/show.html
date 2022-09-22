@@ -38,15 +38,6 @@
             justify-content: center;
         }
 
-        .topbut {
-            position: absolute;
-            top: 36%;
-            left: 80%;
-            margin-top: 10px;
-            display: flex;
-
-
-        }
 
         .topbut > div {
             margin-right: 15px;
@@ -130,8 +121,8 @@
 
 
         $(document).ready(function () {
-            show_comment()
-            //댓글 보여주기
+            {#show_comment()#}
+            {#댓글 보여주기#}
         });
 
         function save_comment() {  //댓글을 db에 저장하는 함수
@@ -149,42 +140,31 @@
             })
         }
 
-        function show_comment() {  //댓글을 화면에 보이게하는 함수
-            $('#comment-list').empty()
+        {#function show_comment() {  //댓글을 화면에 보이게하는 함수#}
+        {#    $('#comment-list').empty()#}
+        {##}
+        {#    $.ajax({#}
+        {#        type: 'GET',#}
+        {#        url: "/lolplus",#}
+        {#        data: {},#}
+        {#        success: function (response) {#}
+        {#            let rows = response["chat_db"]#}
+        {#            for (let i = 0; i < rows.length; i++) {#}
+        {#                let comment = rows[i]['chat']#}
+        {#                let name = rows[i]['name']#}
+        {#                let comment_temp = `<div class="card">#}
+        {#                                        <div class="card-body">#}
+        {#                                            <blockquote class="blockquote mb-0">#}
+        {#                                                <p>${comment}</p>#}
+        {#                                                <footer class="blockquote-footer">${name}</footer>#}
+        {#                                            </blockquote>#}
+        {#                                        </div>#}
+        {#                                    </div>`#}
+        {#                $('#comment-list').append(comment_temp)#}
+        {#            }#}
+        {#        }#}
+        {#    })#}
 
-            $.ajax({
-                type: 'GET',
-                url: "/lolplus",
-                data: {},
-                success: function (response) {
-                    let rows = response["chat_db"]
-                    for (let i = 0; i < rows.length; i++) {
-                        let comment = rows[i]['chat']
-                        let name = rows[i]['name']
-                        let comment_temp = `<div class="card">
-                                                <div class="card-body">
-                                                    <blockquote class="blockquote mb-0">
-                                                        <p>${comment}</p>
-                                                        <footer class="blockquote-footer">${name}</footer>
-                                                    </blockquote>
-                                                </div>
-                                            </div>`
-                        $('#comment-list').append(comment_temp)
-                    }
-                }
-            })
-        }
-        /*
-        function done_show(num) {
-            $.ajax({
-                type: "POST",
-                url: "/show",
-                data: {num_give: num},
-                success: function (response) {
-                    window.location.reload()
-                }
-            });
-        }*/
 
     </script>
 </head>
@@ -192,14 +172,6 @@
 
 <div class="topban" onclick="window.location.href='/'">
     <h1>챔피언정보</h1>
-    <div class="topbut">
-
-        <div class="butst">
-{#클릭시 로그아웃#}
-            <button type="button" class="btn btn-dark" onclick="">logout</button>
-        </div>
-
-    </div>
 </div>
 
 
@@ -258,14 +230,16 @@
 
 
 <div class="mycards" id="comment-list">
-    <div class="card">
-        <div class="card-body">
-            <blockquote class="blockquote mb-0">
-                <p>댓글</p>
-                <footer class="blockquote-footer">아이디</footer>
-            </blockquote>
+    {% for list in lists %}
+        <div class="card">
+            <div class="card-body">
+                <blockquote class="blockquote mb-0">
+                    <p>{{ chatnu.name }}</p>
+                    <footer class="blockquote-footer">{{ chatnu.chat }}</footer>
+                </blockquote>
+            </div>
         </div>
-    </div>
+    {% endfor %}
 </div>
 
 </body>
