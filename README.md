@@ -7,7 +7,7 @@ https://123.123/
 | 이름 | 담당 | 깃허브ID |
 |---|:---:|---:|
 | `곽규현` | 로그인/회원가입,꿀팁 목록 페이지 | [@kkh9960](https://github.com/kkh9960) | 
-| `김승재` | 꿀팁 상세 페이지 |  | 
+| `김승재` | 꿀팁 상세 페이지 | [@andamiro98](https://github.com/andamiro98) | 
 | `황대연` | 꿀팁 작성 페이지 | [@dyhwang](https://github.com/dyhwang)|
 
 
@@ -35,8 +35,11 @@ https://123.123/
 | 기능 | Method | URL | request | response |
 |---|:---:|---:|---:|---:|
 | 로그인 |  | | | | 
-| 회원 가입 | | | | |
-| | | | | |
+| 회원 가입 |  | | | |
+| 팁 목록 조회 | GET |  | | |
+| 팁 작성 | POST |  | {'num': count,'file' : file, 'title' : title, 'name' : name, 'postion':postion, 'star':star, 'desc':desc} | |
+| 댓글 작성 | | | | |
+| 팁 검색 | | | | |
 
 
 
