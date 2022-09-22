@@ -92,9 +92,11 @@ def home():
 @app.route("/lolplus", methods=["POST"])
 def chat_post():
     chat_receive = request.form['comment_give']
+    name_receive = request.form['name_give']
 
     doc = {
-        'chat': chat_receive
+        'chat': chat_receive,
+        'name' : name_receive
     }
 
     db.lolplus.insert_one(doc)
