@@ -37,7 +37,7 @@ https://123.123/
 | 로그인 |  | | | | 
 | 회원 가입 |  | | | |
 | 팁 목록 조회 | GET |  | | |
-| 팁 작성 | POST |  | {'num': count,'file' : file, 'title' : title, 'name' : name,<br> 'postion':postion, 'star':star, 'desc':desc} | |
+| 팁 작성 | POST |  | {'num': count, 'file' : file, 'title' : title, 'name' : name,<br> 'postion':postion, 'star':star, 'desc':desc} | |
 | 댓글 작성 | | | | |
 | 팁 검색 | | | | |
 
